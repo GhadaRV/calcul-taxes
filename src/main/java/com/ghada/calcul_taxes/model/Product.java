@@ -1,6 +1,8 @@
 package com.ghada.calcul_taxes.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
@@ -10,10 +12,13 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "Product name must not be blank")
     private String name;
+    @NotNull(message = "Price must not be null")
     private BigDecimal price;
 
     @Enumerated(EnumType.STRING)
+    @NotNull(message = "Price must not be null")
     private Country country;
 
     public Product() {
@@ -30,31 +35,16 @@ public class Product {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
     public Country getCountry() {
         return country;
     }
 
-    public void setCountry(Country country) {
-        this.country = country;
-    }
 }
